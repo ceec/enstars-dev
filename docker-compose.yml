@@ -4,11 +4,11 @@ networks:
   enstars:
 
 services:
-  site:
+  enstars:
     build:
       context: .
       dockerfile: nginx.dockerfile
-    container_name: nginx
+    container_name: enstars-nginx
     ports:
       - 9876:80
     volumes:
@@ -21,7 +21,7 @@ services:
 
   mysql:
     image: mysql:5.7.29
-    container_name: mysql
+    container_name: enstars-mysql
     restart: unless-stopped
     tty: true
     ports:
@@ -43,7 +43,7 @@ services:
     depends_on:
      - mysql
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+    container_name: enstars-phpmyadmin
     environment:
       PMA_HOST: mysql
     links:
@@ -58,7 +58,7 @@ services:
     build:
       context: .
       dockerfile: php.dockerfile
-    container_name: php
+    container_name: enstars-php
     volumes:
       - ./src:/var/www/html:delegated
     networks:
@@ -68,7 +68,7 @@ services:
     build:
       context: .
       dockerfile: composer.dockerfile
-    container_name: composer
+    container_name: enstars-composer
     volumes:
       - ./src:/var/www/html
     working_dir: /var/www/html
@@ -81,7 +81,7 @@ services:
 
   npm:
     image: node:13.7
-    container_name: npm
+    container_name: enstars-npm
     volumes:
       - ./src:/var/www/html
     working_dir: /var/www/html
@@ -93,7 +93,7 @@ services:
     build:
       context: .
       dockerfile: php.dockerfile
-    container_name: artisan
+    container_name: enstars-artisan
     volumes:
       - ./src:/var/www/html:delegated
     depends_on:
