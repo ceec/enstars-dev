@@ -11,7 +11,7 @@ Dev environment for enstars.info
 
     This will bring up the containers for the development environment.
 
-3. Create a /src folder and clone the main enstars repo into it.
+3. Create a /src directory and clone the main enstars repo into it.
 
     `mkdir src`
 
@@ -21,8 +21,14 @@ Dev environment for enstars.info
 
     It is expecting src to have all the files so make sure the structure isn't src/enstars/
 
-4. TODO: need to fix the file paths here    
+4. In the /src directory, create the vendor directory by running `docker-compose run --rm composer update`
+
+5. Enstars.info uses Laravel as a framework which uses a .env file to control app settings
+
+    1. In the /src directory, make a copy of `.env.example` named `.env`
+
+    2. Generate an API key for `.env` by running `docker-compose run --rm artisan key:generate`
 
 5. Navigate to `http://localhost:9876/` to see the site.
 
-    If you want to use a different port it is set up on line 13 of docker-compose.yml
+    If you want to use a different port it is set up on line 13 of `docker-compose.yml`
