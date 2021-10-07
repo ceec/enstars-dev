@@ -46,6 +46,7 @@ services:
     container_name: enstars-phpmyadmin
     environment:
       PMA_HOST: mysql
+      UPLOAD_LIMIT: 40M
     links:
       - mysql:mysql
     ports:
